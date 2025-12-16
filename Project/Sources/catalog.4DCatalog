@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="SQLvsORDA" uuid="2EA1F85150EF40E18124D171A57BDC95" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Customer" uuid="6DC687E6869347228509EA0C7E735A70" id="1" prevent_journaling="true">
+		<field name="Name" uuid="38D523F1FAF249ADAA3CF85AADA4FFA1" type="10" limiting_length="255" id="1"/>
+		<field name="PK" uuid="BC2AEA06C06640E68F1D84F12C49C54A" type="10" unique="true" autogenerate="true" store_as_UUID="true" id="2"/>
+		<primary_key field_name="PK" field_uuid="BC2AEA06C06640E68F1D84F12C49C54A"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="2">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="29.34765625" top="0" width="88" height="83.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Product" uuid="0ABA88781A3A4306A693324B902664C5" id="2" prevent_journaling="true">
+		<field name="Name" uuid="2F2614890012424BA787D8ECCAC1CC93" type="10" limiting_length="255" id="1"/>
+		<field name="PK" uuid="FFF282D648464DC184B6B22685541344" type="10" unique="true" autogenerate="true" store_as_UUID="true" id="2"/>
+		<field name="Price" uuid="369FA8D437114E16B941B1FADA29D698" type="6" id="3"/>
+		<primary_key field_name="PK" field_uuid="FFF282D648464DC184B6B22685541344"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="3">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="434.390625" top="0" width="88" height="104.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Sales" uuid="92A734DCC76B428C863C5E5B87BA2060" id="3" prevent_journaling="true">
+		<field name="CustomerPK" uuid="0D19D452260F45F8AD3DA2521C752FAA" type="10" store_as_UUID="true" id="1">
+			<field_extra position="4"/>
+		</field>
+		<field name="PK" uuid="DB0CC08F07C941A9843E2576B671A275" type="10" unique="true" autogenerate="true" store_as_UUID="true" id="2">
+			<field_extra position="2"/>
+		</field>
+		<field name="ProductPK" uuid="520021880577432F989DDECCE5A4C72A" type="10" store_as_UUID="true" id="3">
+			<field_extra position="3"/>
+		</field>
+		<field name="SaleDate" uuid="06EB7A2867F6457B91D3091109F77EF8" type="8" id="4">
+			<field_extra position="1"/>
+		</field>
+		<field name="Quantity" uuid="94B3B38979D04A17AE9CA1DD8FB86FFB" type="3" id="5">
+			<field_extra position="5"/>
+		</field>
+		<field name="SalePriceTotal" uuid="BFDD3F2554E44129B7C9A455D66FA880" type="6" id="6">
+			<field_extra position="6"/>
+		</field>
+		<field name="Status" uuid="90D7DCD4E19A4CA597A583AADB029468" type="10" limiting_length="10" id="7">
+			<field_extra position="7"/>
+		</field>
+		<primary_key field_name="PK" field_uuid="DB0CC08F07C941A9843E2576B671A275"/>
+		<table_extra>
+			<editor_table_info fields_ordering="2" displayable_fields_count="7">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="199.328125" top="0" width="134" height="188.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<relation uuid="A87DB9E4F98A4B95BF00FA5B23E69AD7" name_Nto1="customer" name_1toN="sales" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="0D19D452260F45F8AD3DA2521C752FAA" name="CustomerPK">
+				<table_ref uuid="92A734DCC76B428C863C5E5B87BA2060" name="Sales"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="BC2AEA06C06640E68F1D84F12C49C54A" name="PK">
+				<table_ref uuid="6DC687E6869347228509EA0C7E735A70" name="Customer"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="CF13E73CB31F432688BAC18BAC0C53EF" name_Nto1="product" name_1toN="sales" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="520021880577432F989DDECCE5A4C72A" name="ProductPK">
+				<table_ref uuid="92A734DCC76B428C863C5E5B87BA2060" name="Sales"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="FFF282D648464DC184B6B22685541344" name="PK">
+				<table_ref uuid="0ABA88781A3A4306A693324B902664C5" name="Product"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="false" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<index kind="regular" unique_keys="true" uuid="0091A67EF25140968AD5FBFB6803BFAD" type="1">
+		<field_ref uuid="DB0CC08F07C941A9843E2576B671A275" name="PK">
+			<table_ref uuid="92A734DCC76B428C863C5E5B87BA2060" name="Sales"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="10938289C4E14B808AE5D197450E621B" type="3">
+		<field_ref uuid="520021880577432F989DDECCE5A4C72A" name="ProductPK">
+			<table_ref uuid="92A734DCC76B428C863C5E5B87BA2060" name="Sales"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="3194F8EA04574CE88FDD5ABF17A4D36F" type="7">
+		<field_ref uuid="FFF282D648464DC184B6B22685541344" name="PK">
+			<table_ref uuid="0ABA88781A3A4306A693324B902664C5" name="Product"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="8946EA6D986A433180B35F4A51114AD6" type="3">
+		<field_ref uuid="90D7DCD4E19A4CA597A583AADB029468" name="Status">
+			<table_ref uuid="92A734DCC76B428C863C5E5B87BA2060" name="Sales"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="B960C97C561A40D09F72D1FF38BDBAE2" type="7">
+		<field_ref uuid="BC2AEA06C06640E68F1D84F12C49C54A" name="PK">
+			<table_ref uuid="6DC687E6869347228509EA0C7E735A70" name="Customer"/>
+		</field_ref>
+	</index>
+	<base_extra>
+		<journal_file journal_file_enabled="true"/>
+	</base_extra>
+</base>
